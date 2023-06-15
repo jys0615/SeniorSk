@@ -171,18 +171,18 @@ function open_order_list(order_list) {
 
 }
 
-/*전체 삭제 창
+/*전체 삭제 창*/
 function 전체삭제() {
     alert(order_list.length);
     for(i=0; i< order_list.length; i++) {
 
-        var order_id = "order_" + (i + 1);
+        var order_id = "order_" + (i+1);
         document.getElementById(order_id).style.display = 'none';
         order_list.pop();
     }
     open_order_list(order_list);
 }
- */
+ 
 
 /*결제 창*/
 function open_window_pay () {
@@ -270,4 +270,19 @@ function 결제완료() {
 
 function herf_home() {
     location.href = "mega.html";
+}
+
+var SetTime = 5;		// 최초 설정 시간(기본 : 초)
+function msg_time() {	// 1초씩 카운트
+	m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
+    var msg = "현재 남은 시간은 <font color='red'>" + m + "</font> 입니다.";
+	document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌 		
+			SetTime--;					// 1초씩 감소
+			if (SetTime < 0) {			// 시간이 종료 되었으면..
+				clearInterval(tid);		// 타이머 해제
+				alert("종료");
+			}	
+		}
+
+	window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) 
 }
