@@ -145,8 +145,6 @@ function delete_item(index) {
     order_list = order_list.splice(index, 1);
     open_order_list(order_list);
 }
-
-
 /*order_list에 표시하기*/
 var total_list= [0, 0];
 function open_order_list(order_list) {
@@ -157,30 +155,25 @@ function open_order_list(order_list) {
         var order_id = "order_" + (i + 1);
         document.getElementById(order_id).style.display = 'flex';
 
-        document.getElementById("range_" + (i + 1)).innerText = (i + 1) + ". " + (order_list[i].name);
+        document.getElementById("range_" + (i + 1)).innerText = (order_list[i].name);
         document.getElementById("amount_" + (i + 1)).innerText = (order_list[i].number) + "개";
         document.getElementById("item_price_" + (i + 1)).innerText = (order_list[i].price) * (order_list[i].number) + "원";
         
         total_num += order_list[i].number;
         total_price += (order_list[i].price)*(order_list[i].number);
     }
-    document.getElementById("item_number").innerHTML= "_________________________<br>선택한 상품 " + (total_num) + "개";
+    document.getElementById("item_number").innerHTML = "_________________________<br>선택한 상품 " + (total_num) + "개";
     document.getElementById("total_price").innerHTML = (total_price)+"원<br>결제하기";
     total_list[0] = total_num;
     total_list[1] = total_price;
 
 }
-
-/*전체 삭제 창*/
+function delete_menu(i) {
+    var order_id = "order_" + i;
+    document.getElementById(order_id).remove();
+}
 function 전체삭제() {
-    alert(order_list.length);
-    for(i=0; i< order_list.length; i++) {
-
-        var order_id = "order_" + (i+1);
-        document.getElementById(order_id).style.display = 'none';
-        order_list.pop();
-    }
-    open_order_list(order_list);
+    order_list = [];
 }
  
 
@@ -196,7 +189,7 @@ function open_window_pay () {
     
     document.getElementById("돌아가기").style.display = 'block';
     document.getElementById("먹고가기").style.display = 'block';
-    document.getElementById("가져가기").style.display = 'block';
+    document.getElementById("포장하기").style.display = 'block';
 
     document.getElementById("돌아가기_2").style.display = 'none';
     document.getElementById("쿠폰사용").style.display = 'none';
@@ -227,7 +220,7 @@ function write_order_list_window_pay (order_list) {
 function change_window_btn() {
     document.getElementById("돌아가기").style.display = 'none';
     document.getElementById("먹고가기").style.display = 'none';
-    document.getElementById("가져가기").style.display = 'none';
+    document.getElementById("포장하기").style.display = 'none';
 
     document.getElementById("돌아가기_2").style.display = 'block';
     document.getElementById("쿠폰사용").style.display = 'block';
@@ -239,7 +232,7 @@ function change_window_btn() {
 function back_2_window_btn() {
     document.getElementById("돌아가기").style.display = 'block';
     document.getElementById("먹고가기").style.display = 'block';
-    document.getElementById("가져가기").style.display = 'block';
+    document.getElementById("포장하기").style.display = 'block';
 
     document.getElementById("돌아가기_2").style.display = 'none';
     document.getElementById("쿠폰사용").style.display = 'none';
@@ -262,6 +255,29 @@ function close_w_카드결제() {
     document.getElementById("insert_card_moving").style.display = 'none';
 
 }
+function open_w_쿠폰사용() {
+    document.getElementById("w_쿠폰사용").style.display = 'block';
+    document.getElementById("window_pay").style.display = 'none';
+}
+
+function close_w_쿠폰사용() {
+    document.getElementById("w_쿠폰사용").style.display = 'none';
+    document.getElementById("screen_to_window_pay").style.display = 'none';
+    document.getElementById("insert_card_moving").style.display = 'none';
+
+}
+
+function open_w_페이코() {
+    document.getElementById("w_페이코").style.display = 'block';
+    document.getElementById("window_pay").style.display = 'none';
+}
+
+function close_w_페이코() {
+    document.getElementById("w_페이코").style.display = 'none';
+    document.getElementById("screen_to_window_pay").style.display = 'none';
+    document.getElementById("insert_card_moving").style.display = 'none';
+
+}
 
 function 결제완료() {
     alert("감사합니다. 결제가 완료되었습니다. 교환권과 카드를 챙겨가세요.");
@@ -272,7 +288,7 @@ function herf_home() {
     location.href = "mega.html";
 }
 
-var SetTime = 5;		// 최초 설정 시간(기본 : 초)
+/*var SetTime = 5;		// 최초 설정 시간(기본 : 초)
 function msg_time() {	// 1초씩 카운트
 	m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
     var msg = "현재 남은 시간은 <font color='red'>" + m + "</font> 입니다.";
@@ -285,4 +301,25 @@ function msg_time() {	// 1초씩 카운트
 		}
 
 	window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) 
-}
+}*/
+
+/*var num = 30; 타이머
+let timerId = null;
+var lefttime = document.getElementById('.remaining-time').innerHTML = num;
+
+window.onclick = () => {
+  if (timerId) {
+    clearInterval(timerId);
+    timerId = null;
+    num = 30;
+  }
+
+  timerId = setInterval(() => {
+    num -= 1;
+    leftTime.textContent = num;
+    if (num === 0) {
+      num = 30;
+      window.location.reload();
+    }
+  }, 1000);
+};*/

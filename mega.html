@@ -566,21 +566,46 @@
                     <div id="window_bottom">
                         <div id="돌아가기" onclick="close_window_pay()">←<br>돌아가기</div>
                         <div id="먹고가기" onclick="change_window_btn()"><br>먹고가기</div>
-                        <div id="가져가기" onclick="change_window_btn()"><br>가져가기</div>
+                        <div id="포장하기" onclick="change_window_btn()"><br>포장하기</div>
 
                         <div id="돌아가기_2" onclick="back_2_window_btn()">←<br>돌아가기</div>
-                        <div id="쿠폰사용">
-                            <div id="coupon"></div>
-                            <div><br>쿠폰사용</div>
-                        </div>
-                        <div id="페이코">PAYCO<br>페이코</div>
+                        <div id="쿠폰사용" onclick="open_w_쿠폰사용()"><br>쿠폰사용</div>
+                        <div id="페이코" onclick="open_w_페이코()">PAYCO<br>페이코</div>
                         <div id="카드결제" onclick="open_w_카드결제()"><br>카드결제</div>
 
                     </div>
+                </div> 
 
+                <div id="w_쿠폰사용"> 
+                    <div id="w_쿠폰사용_top">
+                        <div>모바일 상품권</div>
+                        <div onclick="close_w_쿠폰사용()">X</div>
+                    </div>
+                    <div id="w_block">
+                        <div>다음 그림과 같이 신용/체크카드를 넣어주세요</div>
+                        <div id="insert_card_w"></div>
+                    </div>
+                    <div id="w_bottom">
+                        <div id="취소" onclick="close_w_쿠폰사용">조회</div>
+                        <div id="승인요청">사용</div>
+                    </div>
                 </div>
 
-                <div id="포인트적립"> </div>
+                <div id="w_페이코"> 
+                    <div id="w_페이코_top">
+                        <div>모바일 상품권</div>
+                        <div onclick="close_w_페이코()">X</div>
+                    </div>
+                    <div id="w_block">
+                        <div>다음 그림과 같이 신용/체크카드를 넣어주세요</div>
+                        <div id="insert_card_w"></div>
+                    </div>
+                    <div id="w_bottom">
+                        <div id="취소" onclick="close_w_페이코">취소</div>
+                        <div id="승인요청">결제요청</div>
+                    </div>
+                </div>
+                
 
                 <div id="w_카드결제">
                     <div id="w_카드결제_top">
@@ -598,7 +623,7 @@
                         </div>
                         <div>
                             <div>할부개월</div>
-                            <div >일시불</div>
+                            <div>일시불</div>
                         </div>
                         <div id="w_list_1">
                             <div>카드번호</div>
@@ -610,7 +635,7 @@
                         <div id="승인요청"> 승인요청</div>
                     </div>
                 </div>
-
+                
             </div>
 
         </div>

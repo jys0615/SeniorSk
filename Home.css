@@ -332,6 +332,18 @@ body {
     font-size: 13px;
     text-align: right;
 }
+/*#remaining-time-container {
+    grid-column: 5/6;
+    grid-row: 1/2;
+    margin: 5px;
+    padding: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.remaining-time {
+    font-size: 13px;
+    color: tomato;
+}*/
 #delete_all {
     width: 45px;
     height: 45px;
@@ -587,7 +599,7 @@ body {
     height: 55%;
     background: #FFC000;
 }
-#가져가기 {
+#포장하기 {
     width: 33%;
     height: 55%;
     background: #FF0000;
@@ -600,17 +612,6 @@ body {
     font-size: 15px;
     
 }
-#쿠폰사용 {
-    width: 23%;
-    display: none;
-    height: 55%;
-    background: #FFC000;
-    font-size: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
 #페이코 {
     width: 23%;
     height: 55%;
@@ -618,6 +619,30 @@ body {
     font-size: 15px;
     color: red;
     border: solid red 1px;
+}
+#w_페이코 {
+    margin-top: 15%;
+    margin-left: 5%;
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    top: 0;
+    background: white;    
+}
+#w_페이코_top {
+    background: #ef4444;
+    width: 100%;
+    height: 7%;
+    font: bold 15px white;
+    display: flex;
+    justify-content: space-between;
+    row-gap: 50px;
+    color: white;
+}
+#w_페이코_top div {
+    margin-top: 3%;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 #카드결제 {
     width: 23%;
@@ -647,6 +672,40 @@ body {
     color: white;
 }
 #w_카드결제_top div {
+    margin-top: 3%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#쿠폰사용 {
+    width: 23%;
+    display: none;
+    height: 55%;
+    background: #FFC000;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#w_쿠폰사용 {
+    margin-top: 15%;
+    margin-left: 5%;
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    top: 0;
+    background: white;    
+}
+#w_쿠폰사용_top {
+    background: #ef4444;
+    width: 100%;
+    height: 7%;
+    font: bold 15px white;
+    display: flex;
+    justify-content: space-between;
+    row-gap: 50px;
+    color: white;
+}
+#w_쿠폰사용_top div {
     margin-top: 3%;
     margin-left: 20px;
     margin-right: 20px;
@@ -708,7 +767,7 @@ body {
 
 }
 #취소 {
-    width: 35%;
+    width: 55%;
     background: #595959;
 }
 #승인요청 {
@@ -762,7 +821,13 @@ body {
 #screen_to_window_pay {
     display: none;
 }
+#w_페이코 {
+    display: none;
+}
 #w_카드결제 {
+    display: none;
+}
+#w_쿠폰사용 {
     display: none;
 }
 #insert_card_moving {
@@ -795,3 +860,5 @@ body {
     font-size: 20px;
     font-weight: bold;
 }
+
+  
