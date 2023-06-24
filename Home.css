@@ -221,7 +221,7 @@ body {
     width: 100%;
     height: 60%;
     display: none;
-    background: #eeeeee;
+    background: #ffd600;
 }
 
 #row {
@@ -247,7 +247,7 @@ body {
 #nextpage {
     width: 100%;
     height: 3%;
-    background: #eeeeee;
+    background: #ffd600;
     display: none;
     justify-content: center;
     gap: 10px;
@@ -269,12 +269,13 @@ body {
 #pay {
     width: 100%;
     height: 26%;
-    background: #eeeeee;
+    background: #ffd600;
     display: none;
 }
 #order_lsit {
     width: 65%;
     height: 100%;
+    border-radius: 0px 10px 0px 0px;
     background: white;
     font-size: 12px;
     flex-direction: column;
@@ -320,6 +321,7 @@ body {
 #order_list_right {
     width: 35%;
     flex-direction: column;
+    background: #ffd600;
 }
 #pay_right {
     width: 100%;
@@ -329,7 +331,9 @@ body {
     align-items: center;
 }
 #rest_time {
+    color: black;
     font-size: 13px;
+    font-weight: bold;
     text-align: right;
 }
 /*#remaining-time-container {
@@ -491,7 +495,16 @@ body {
     height: 20%;
     background: url(img/card_insert_moving.png) no-repeat center / cover;
 }
-
+#insert_barcode_moving {
+    position:relative;
+    bottom: 17%;
+    display: block;
+    /*left: 60%;*/
+    width: 25%;
+    height: 100px;
+    object-fit: cover;
+    background: url(img/barcode_scan\ \(2\).png) no-repeat center / cover;
+}
 
 /*결제 창 페이지*/
 #screen_to_window_pay {
@@ -514,13 +527,12 @@ body {
     background: white;    
 }
 #window_top {
-    background: #ef4444;
+    background: #ffd600;
     width: 100%;
-    height: 7%;
+    height: 8%;
     font: bold 13px white;
     display: flex;
     justify-content: space-around;
-    color: white;
 }
 #window_top div {
     margin-top: 3%;
@@ -544,9 +556,7 @@ body {
     font-weight: bolder;
     font-size: 1.5vh;
 }
-#window_1 {
-    margin-top: 5%;
-}
+
 #window_num_price {
     width: 90%;
     height: 13%;
@@ -592,25 +602,32 @@ body {
 #돌아가기 {
     width: 25%;
     height: 55%;
+    font-size: 15px;
     background: #595959;
 }
 #먹고가기 {
     width: 33%;
     height: 55%;
+    font-size: 15px;
     background: #FFC000;
 }
 #포장하기 {
     width: 33%;
     height: 55%;
+    font-size: 15px;
     background: #FF0000;
 }
 #돌아가기_2 {
     display: none;    
-    width: 23%;
+    width: 25%;
     height: 55%;
     background: #595959;
     font-size: 15px;
     
+}
+#알림 {
+    font-size: 15px;
+    color: red;
 }
 #페이코 {
     width: 23%;
@@ -630,9 +647,9 @@ body {
     background: white;    
 }
 #w_페이코_top {
-    background: #ef4444;
+    background: #ffd600;
     width: 100%;
-    height: 7%;
+    height: 8%;
     font: bold 15px white;
     display: flex;
     justify-content: space-between;
@@ -662,14 +679,14 @@ body {
     background: white;    
 }
 #w_카드결제_top {
-    background: #ef4444;
+    background: #ffd600;
     width: 100%;
-    height: 7%;
+    height: 8%;
     font: bold 15px white;
     display: flex;
     justify-content: space-between;
     row-gap: 50px;
-    color: white;
+    
 }
 #w_카드결제_top div {
     margin-top: 3%;
@@ -696,9 +713,9 @@ body {
     background: white;    
 }
 #w_쿠폰사용_top {
-    background: #ef4444;
+    background: #ffd600;
     width: 100%;
-    height: 7%;
+    height: 8%;
     font: bold 15px white;
     display: flex;
     justify-content: space-between;
@@ -714,8 +731,8 @@ body {
     width: 90%;
     height: 35%;
     margin-left: 5%;
-    margin-top: 13%;
-    font-size: 13px;
+    margin-top: 10%;
+    font-size: 11px;
     font-weight: bolder;
     display: flex;
     flex-direction: column;
@@ -725,10 +742,29 @@ body {
     display: flex;
     justify-content: center;
 }
+#w_block_a {
+    
+    height: 35%;
+    margin-left: 5%;
+    margin-top: 13%;
+    font-size: 13px;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+
+}
+#w_block_a div {
+    justify-content: center;
+}
 #insert_card_w {
     width: 270px;
     height: 120px;
     background: url(img/insert_card_w.png) no-repeat center/cover;
+}
+#barcode_scan {
+    width: 270px;
+    height: 120px;
+    background: url(img/barcode_scan.png) no-repeat center/cover;
 }
 #w_list {
     width: 80%;
@@ -736,6 +772,16 @@ body {
     display: flex;
     flex-direction: column;
     margin-left: 10%;
+    padding-bottom: 5%;
+    font-weight: bolder;
+    font-size: 2vh;
+}
+#w_list_p {
+    width: 80%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 6%;
     padding-bottom: 5%;
     font-weight: bolder;
     font-size: 2vh;
@@ -754,6 +800,12 @@ body {
 #w_카드결제_total_price {
     color: #ef4444;
 }
+#w_쿠폰사용_total_price {
+    color: #ef4444;
+}
+#w_페이코_total_price {
+    color: #ef4444;
+}
 #w_bottom {
     margin-left: 10%;
     width: 80%;
@@ -767,17 +819,22 @@ body {
 
 }
 #취소 {
-    width: 55%;
+    width: 45%;
+    border-radius: 10px;
     background: #595959;
 }
 #승인요청 {
-    width: 55%;
+    width: 45%;
+    border-radius: 10px;
     background: #ef4444;
 }
 
 
 /*메뉴 디스플레이 설정*/
 #커피_HOT, #커피_ICE {
+    display: none;
+}
+#추천_디저트 {
     display: none;
 }
 #추천_음료_p2 {
@@ -831,6 +888,9 @@ body {
     display: none;
 }
 #insert_card_moving {
+    display: none;
+}
+#insert_barcode_moving {
     display: none;
 }
 

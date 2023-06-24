@@ -24,7 +24,12 @@ function hide_order_list() {
         list[i].style.display = 'none';
     }
 }
-
+function hide_order(num) {
+    var list = document.getElementsByClassName("cart");
+    var size = list.length;
+    list[num].style.display = 'none';
+    //list[size-1].style.display = 'none';
+}
 
 var menu_list = ["추천_음료"];
 function open_menu_table(id) {
@@ -32,6 +37,7 @@ function open_menu_table(id) {
     // document.getElementById(menu_list[0]).style.display = 'none';
     // menu_list.pop();
     // menu_list.push(id);
+   
     document.getElementById(id).style.display = 'block';
 }
 
@@ -139,10 +145,12 @@ function option(id, type, price) {
     }
 }
 
-
-
-function delete_item(index) {
-    order_list = order_list.splice(index, 1);
+function delete_item(index, id) {
+    document.getElementById(order_list[index].name).style.borderStyle = 'none';
+    document.getElementById(order_list[index].name).style.borderColor = 'none';
+    hide_order(order_list.length-1);
+    order_list.splice(index, 1);
+    hide_order(index);
     open_order_list(order_list);
 }
 /*order_list에 표시하기*/
@@ -150,30 +158,36 @@ var total_list= [0, 0];
 function open_order_list(order_list) {
     var total_num = 0;
     var total_price = 0;
-
+    //var num = 120;
+    // var total_time = num;
+    //var timerId = null;
     for (i = 0; i < order_list.length; i++) {
         var order_id = "order_" + (i + 1);
         document.getElementById(order_id).style.display = 'flex';
 
-        document.getElementById("range_" + (i + 1)).innerText = (order_list[i].name);
+        document.getElementById("range_" + (i + 1)).innerText = (i + 1) + " " + (order_list[i].name);
         document.getElementById("amount_" + (i + 1)).innerText = (order_list[i].number) + "개";
         document.getElementById("item_price_" + (i + 1)).innerText = (order_list[i].price) * (order_list[i].number) + "원";
         
         total_num += order_list[i].number;
         total_price += (order_list[i].price)*(order_list[i].number);
     }
+
+    //document.getElementById("rest_time").innerHTML = "남은시간<br>" + (total_time) +"초"
     document.getElementById("item_number").innerHTML = "_________________________<br>선택한 상품 " + (total_num) + "개";
     document.getElementById("total_price").innerHTML = (total_price)+"원<br>결제하기";
     total_list[0] = total_num;
     total_list[1] = total_price;
 
 }
-function delete_menu(i) {
-    var order_id = "order_" + i;
-    document.getElementById(order_id).remove();
-}
 function 전체삭제() {
+    for (i = 0; i < order_list.length; i++) {
+    document.getElementById(order_list[i].name).style.borderStyle = 'none';
+    document.getElementById(order_list[i].name).style.borderColor = 'none';
+    }
+    hide_order_list();
     order_list = [];
+    open_order_list(order_list);
 }
  
 
@@ -209,14 +223,13 @@ function write_order_list_window_pay (order_list) {
     for (i=0; i<order_list.length; i++) {
         var window_id = "window_" + (i+1);
         document.getElementById(window_id).style.display = 'flex';
-        document.getElementById("w_order_" + (i + 1)).innerText = (i + 1) + ". " + (order_list[i].name);
+        document.getElementById("w_order_" + (i + 1)).innerText = (i + 1) + " " + (order_list[i].name);
         document.getElementById("w_number_" + (i + 1)).innerText = (order_list[i].number) + "개 " + (order_list[i].price) * (order_list[i].number) + "원";
 
 
     }
 
 }
-
 function change_window_btn() {
     document.getElementById("돌아가기").style.display = 'none';
     document.getElementById("먹고가기").style.display = 'none';
@@ -244,7 +257,6 @@ function open_w_카드결제() {
     document.getElementById("w_카드결제").style.display = 'block';
     document.getElementById("window_pay").style.display = 'none';
     document.getElementById("w_카드결제_total_price").innerText = total_list[1]+"원";
-
     document.getElementById("insert_card_moving").style.display='block';
     
 }
@@ -258,29 +270,35 @@ function close_w_카드결제() {
 function open_w_쿠폰사용() {
     document.getElementById("w_쿠폰사용").style.display = 'block';
     document.getElementById("window_pay").style.display = 'none';
+    document.getElementById("w_쿠폰사용_total_price").innerText = total_list[1]+"원";
+    document.getElementById("insert_barcode_moving").style.display = 'block';
 }
-
+function search_w_쿠폰사용() {
+    alert("쿠폰 사용이 가능합니다.")
+    open_w_쿠폰사용();
+}
 function close_w_쿠폰사용() {
     document.getElementById("w_쿠폰사용").style.display = 'none';
     document.getElementById("screen_to_window_pay").style.display = 'none';
     document.getElementById("insert_card_moving").style.display = 'none';
-
+    document.getElementById("insert_barcode_moving").style.display = 'none';
 }
 
 function open_w_페이코() {
     document.getElementById("w_페이코").style.display = 'block';
     document.getElementById("window_pay").style.display = 'none';
+    document.getElementById("w_페이코_total_price").innerText = total_list[1]+"원";
+    document.getElementById("insert_barcode_moving").style.display = 'block';
 }
 
 function close_w_페이코() {
     document.getElementById("w_페이코").style.display = 'none';
     document.getElementById("screen_to_window_pay").style.display = 'none';
-    document.getElementById("insert_card_moving").style.display = 'none';
-
+    document.getElementById("insert_barcode_moving").style.display = 'none';
 }
 
 function 결제완료() {
-    alert("감사합니다. 결제가 완료되었습니다. 교환권과 카드를 챙겨가세요.");
+    alert("감사합니다. 카드와 영수증을 챙겨가세요.");
     location.href = "mega.html";
 }
 

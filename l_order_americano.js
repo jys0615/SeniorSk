@@ -86,6 +86,7 @@ function open_order_list(order_list) {
 
 function delete_item(index) {
     order_list = order_list.splice(index, 1);
+    hide_order(index);
     open_order_list(order_list);
 }
 
