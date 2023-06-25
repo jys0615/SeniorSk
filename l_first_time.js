@@ -52,6 +52,9 @@ function 터치() {
     if(index==7) {
         step7();
     }
+    if(index==8) {
+        step8();
+    }
 }
 
 function step2() {
@@ -121,10 +124,21 @@ function step7() {
     document.getElementById("step7").style.display = 'block';
     document.getElementById("window_pay").style.display = 'none';
     document.getElementById("w_카드결제").style.display = 'none';
+    document.getElementById("w_쿠폰사용").style.display = 'block';
     document.getElementById("insert_card_moving").style.display = 'none';
-
     document.getElementById("insert_card").style.border = 'none'; 
+    document.getElementById("insert_barcode_moving").style.display = 'block';
+    document.getElementById("insert_barcode_moving").style.border = 'solid red 8px';   
+    document.getElementById("w_list_b").style.border = 'solid red 8px';  
+}
+function step8() {
+    document.getElementById("step7").style.display = 'none';
+    document.getElementById("step8").style.display = 'block';
+    document.getElementById("window_pay").style.display = 'none';
+    document.getElementById("w_쿠폰사용").style.display = 'none';
+    document.getElementById("insert_barcode_moving").style.display = 'none';
+    document.getElementById("barcode").style.border = 'none'; 
     
     alert("키오스크의 기본에 대해 모두 학습했습니다. 이제 키오스크를 통해 주문하는 구체적인 방법을 학습해보세요. 확인 버튼을 누르면 처음 페이지로 이동합니다.");
-    location.href = "learn.html"
+    location.href = "index.html"
 }

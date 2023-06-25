@@ -173,7 +173,7 @@ body {
 #top_bar {
     background: #ef4444;
     width: 100%;
-    height: 4vh;
+    height: 3vh;
 
     color: white;
     text-align: center;
@@ -183,14 +183,16 @@ body {
 }
 #mega_top_bar_home {
     width: 30px;
-    height: auto;
+    height: 24px;
     background: url(img/mega_top_bar_home.png) no-repeat center / cover;
 
 }
 #mega_top_bar_name {
+    font-weight: bold;
     padding-left: 20px;
 }
 #mega_top_bar_lang {
+    font-weight: bold;
     width: 60px;
     height: 30px;
     background: url(img/mega_top_bar_lang.png);
@@ -336,18 +338,6 @@ body {
     font-weight: bold;
     text-align: right;
 }
-/*#remaining-time-container {
-    grid-column: 5/6;
-    grid-row: 1/2;
-    margin: 5px;
-    padding: 20px;
-    font-size: 13px;
-    font-weight: bold;
-}
-.remaining-time {
-    font-size: 13px;
-    color: tomato;
-}*/
 #delete_all {
     width: 45px;
     height: 45px;
@@ -377,7 +367,11 @@ body {
     height: 40px;
     background: url(img/mega_card_img.png) no-repeat center / cover;
 }
-
+#coffee_img {
+    width: 40px;
+    height: 40px;
+    background: url(img/mega_coffee_img.png) no-repeat center / cover;
+}
 
 /*테이블 페이지 이동*/
 #right_btn {
@@ -491,17 +485,17 @@ body {
     bottom: 17%;
     display: block;
     left: 60%;
-    width: 30%;
-    height: 20%;
+    width: 25%;
+    height: 100px;
     background: url(img/card_insert_moving.png) no-repeat center / cover;
 }
 #insert_barcode_moving {
     position:relative;
     bottom: 17%;
     display: block;
-    /*left: 60%;*/
-    width: 25%;
-    height: 100px;
+    left: 8.5%;
+    width: 63px;
+    height: 105px;
     object-fit: cover;
     background: url(img/barcode_scan\ \(2\).png) no-repeat center / cover;
 }
@@ -767,11 +761,11 @@ body {
     background: url(img/barcode_scan.png) no-repeat center/cover;
 }
 #w_list {
-    width: 80%;
+    width: 100%;
     height: 20%;
     display: flex;
     flex-direction: column;
-    margin-left: 10%;
+    /*margin-left: 10%;*/
     padding-bottom: 5%;
     font-weight: bolder;
     font-size: 2vh;
@@ -781,7 +775,7 @@ body {
     height: 20%;
     display: flex;
     flex-direction: column;
-    margin-left: 6%;
+    margin-left: 10%;
     padding-bottom: 5%;
     font-weight: bolder;
     font-size: 2vh;
@@ -793,7 +787,18 @@ body {
     justify-content: space-between;
 
 }
+#w_list_p div {
+    height: 30%;
+    line-height: 220%;
+    display: flex;
+    justify-content: space-between;
+
+}
 #w_list_1 {
+    background: #DAE3F3;
+    
+}
+#w_list_b {
     background: #DAE3F3;
     
 }
@@ -814,7 +819,7 @@ body {
     color: white;
     justify-content: space-between;
     text-align: center;
-    line-height: 500%;
+    line-height: 400%;
     font-weight: bolder;
 
 }

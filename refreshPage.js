@@ -1,23 +1,14 @@
 // 남은 시간 영역
-const $leftTime = document.querySelector('.remaining-time');
+var time = 120;
+var x = setInterval(function() {
+  document.getElementById("rest_time").innerHTML = "남은시간<br>" + time + "초";
+  time--;
 
-var num = 30;
-var timerId = null;
-$leftTime.textContent = num;
-
-window.onclick = () => {
-  if (timerId) {
-    clearInterval(timerId);
-    timerId = null;
-    num = 30;
+  if (time < -1) {
+    document.getElementById("rest_time").innerHTML = "시간초과";
+    clearInterval(x);
+    location.href = "mega.html";
+    alert("시간이 초과됐습니다.");
   }
+}, 1000);
 
-  timerId = setInterval(() => {
-    num -= 1;
-    $leftTime.textContent = num;
-    if (num === 0) {
-      num = 30;
-      window.location.reload();
-    }
-  }, 1000);
-};

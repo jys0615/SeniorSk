@@ -1,146 +1,123 @@
-
-
-function buildPad (target, txt){
-    
-    const canvas = document.getElementById(target)    
-    const ctx = canvas.getContext('2d')
-    const texter = document.getElementById(txt)   
-
-    let calbackFun = null  //콜백함수
-    let numArray = [ '⇐' ]
-    let box = []
-
-    let font = 'normal 35px gothic'
-    let clickedColor = 'rgba( 172, 231, 243 , 0.4)'
-
-    let WIDTH = canvas.width
-    let HEIGHT = canvas.height
-
-    function _init(reff){
-        WIDTH = canvas.width
-        HEIGHT = canvas.height
-
-        if(reff)  {
-            if(texter.value) {
-                texter.value = ''
-            } else {
-                texter.innerHTML = ''           
-            }            
-        }
-
-        box = []
-        numArray = [ '⇐' ]
-
-        let numbers = [0,1,2,3,4,5,6,7,8,9]
-        while(true){  
-            let cursor = parseInt(Math.random() * 10)
-            if( cursor < 10 && numbers[cursor] != -1) {
-                numArray.push(numbers[cursor])
-                numbers[cursor] = -1
-            }
-            if(numbers.filter( _num => _num == -1).length == 10) break;
-        }    
-        numArray.push('↵')    
-
-        let textIndex = 0
-        let row = 0
-
-        while(row < 3){  //박스를 완성 합니다.
-            let colomn = 0
-            while(colomn < 4){
-                let x = WIDTH * colomn / 4
-                let y = HEIGHT * row/3
-                box.push({ x, y, text : numArray[textIndex] })
-                colomn += 1
-                textIndex += 1
-            }
-            row += 1
-        }        
-
-        commonDraw()
-    }
-
-    function commonDraw(showTarget, color){ 
-        ctx.clearRect(0,0,WIDTH, HEIGHT)
-        let boxWidth = WIDTH / 4
-        let boxHeight = HEIGHT / 3
-        box.forEach( item => {
-            ctx.save()
-            ctx.beginPath()
-            ctx.moveTo(item.x , item.y)
-            ctx.strokeRect(item.x  , item.y, boxWidth , boxHeight)
-            ctx.closePath()
-            let txt = item.text + ''
-            ctx.font = font
-            let moreSize = ctx.measureText(txt).width / 2
-            ctx.fillText(txt, item.x + boxWidth / 2 - moreSize  , item.y + boxHeight / 2 + 35/3)
-            ctx.restore()
-            if(showTarget && item.text == showTarget.text){ 
-                ctx.save()
-                ctx.beginPath()
-                ctx.moveTo(item.x , item.y)
-                ctx.fillStyle = color
-                ctx.fillRect(item.x  , item.y, boxWidth , boxHeight)
-                ctx.restore()
-                setTimeout(() => {
-                    commonDraw(null, null)  
-                }, 100)
-            }
-        })
-    }
-    
-    function isInside(x1, y1){
-        let _data = null
-        box.forEach( element => { 
-            if(element.x <= x1 && x1 <= element.x + (WIDTH / 4)){
-                if(element.y <= y1 && y1 <= element.y + (HEIGHT / 3)){
-                    _data = element
-                }
-            }
-        })
-        let txt = _data.text
-        if(texter.value) {
-            if(txt == '⇐'){
-                if(texter.value) texter.value = texter.value.substring(0, texter.value.length-1)
-            } else if(txt == '↵'){
-                if(calbackFun) calbackFun(texter.value)
-            } else {
-                texter.value = texter.value? texter.value + txt : txt
-            }
-        } else {  
-            if(txt == '⇐'){
-                if(texter.innerHTML) texter.innerHTML = texter.innerHTML.substring(0, texter.innerHTML.length-1)
-            } else if(txt == '↵'){
-                if(calbackFun) calbackFun(texter.innerHTML)
-            }  else {
-                texter.innerHTML = texter.innerHTML ? texter.innerHTML+ txt : txt
-            }            
-        }
-        commonDraw(_data, clickedColor)
-    }
-
-    _init(false) 
-
-    canvas.addEventListener('mousedown', function (event) {
-        let x1 = event.clientX - canvas.parentElement.offsetLeft
-        let y1 = event.clientY - canvas.parentElement.offsetTop
-        isInside(x1, y1)
-    }, false)    
-
-
-    return {
-        refresh : ()=> _init(true),
-        enter : (calback) => calbackFun = calback
-    }
+const $steps = document.getElementById('steps');
+const $display = document.getElementById('display');
+const $area_btn = document.getElementById('area-btn');
+ 
+const data = {
+    prev : '',
+    curr : '',
+    operator:undefined,
+    pressedResult : false
 }
-
-let build = buildPad('canvas', 'target')
-
-build.enter( (arg)=>{
-    console.log(arg)
-})
-
-
-function refresh(){
-    build.refresh()
-}
+ 
+$area_btn.addEventListener('click',(e)=>{
+    const target = e.target;
+    if(target.tagName !== 'BUTTON'){return;}
+ 
+    //리셋인 경우
+    if(target.id == "reset"){
+        reset_data();
+        return;}
+ 
+    //숫자인경우
+    if(target.classList.contains('num')){
+        on_num(data.operator, target);}
+ 
+    //연산자인 경우
+    if(target.classList.contains('op')){
+        on_ops(target);}
+ 
+    // = 인 경우
+    if(target.id == 'btn_result'){
+        show_result();}
+ 
+    //-- 최종 : blur
+    target.blur();
+});
+ 
+/* 숫자버튼을 눌렀을 경우 */
+function on_num(bool,target){
+    const val = target.dataset.val;
+    const prevOrcurr = bool ? 'curr' : 'prev';
+    if(val == "-1"){
+        data[prevOrcurr] = Number(data[prevOrcurr]) * -1;
+    }else{
+        data[prevOrcurr] += val;
+    }
+    $display.textContent = data[prevOrcurr];
+}//on_num
+ 
+/* 연산자를 눌렀을 경우 */
+function on_ops(target){
+    $steps.classList.remove('off');
+    const val_op = target.dataset.val;
+    data.operator = val_op;
+ 
+    if(data.prev == undefined){return;}
+ 
+    if(!data.pressedResult && data.curr){show_result();}
+ 
+    show_middleStep();
+    data.curr = '';
+    data.pressedResult = false;
+}//on_ops
+ 
+/* 결과 = 버튼인 경우 */
+function show_result(){
+    if(data.prev == undefined || data.curr == undefined || !data.operator){return;}
+    data.pressedResult = true;
+    
+    show_finalStep();
+ 
+    data.prev = caculSwitch();
+    $display.textContent = data.prev;
+}//show_result
+ 
+/* switch로 계산 */
+function caculSwitch(){
+    const {prev,curr,operator} = data;
+    switch(operator){
+        case "+" :
+            return Number(prev) + Number(curr);
+        case "-" :
+            return Number(prev) - Number(curr);
+        case "*" :
+            return Number(prev) * Number(curr);
+        case "/" :
+            return Number(prev) / Number(curr);
+    }
+}//caculSwitch
+ 
+function operator_to_string(){
+    const {operator} = data;
+    switch(operator){
+        case "+" :
+            return "+";
+        case "-" :
+            return "-";
+        case "*" :
+            return "×";
+        case "/" :
+            return "÷";
+    }
+}//operator_to_string
+ 
+function show_middleStep(){
+    const step_str = `${data.prev} ${operator_to_string()}`;
+    $steps.textContent = step_str;
+}//show_middleStep
+ 
+function show_finalStep(){
+    const cacul_str = `${data.prev} ${operator_to_string()} ${data.curr}`;
+    $steps.textContent = `${cacul_str} =`;
+}//show_finalStep
+ 
+/* 리셋 */
+function reset_data(){
+    data.prev = '';
+    data.curr = '';
+    $steps.textContent = '&nbsp';
+    $steps.classList.add('off');
+    $display.textContent = '0';
+    data.operator = undefined;
+    data.pressedResult = true;
+}//reset_data

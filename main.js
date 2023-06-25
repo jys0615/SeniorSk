@@ -28,7 +28,6 @@ function hide_order(num) {
     var list = document.getElementsByClassName("cart");
     var size = list.length;
     list[num].style.display = 'none';
-    //list[size-1].style.display = 'none';
 }
 
 var menu_list = ["추천_음료"];
@@ -158,9 +157,6 @@ var total_list= [0, 0];
 function open_order_list(order_list) {
     var total_num = 0;
     var total_price = 0;
-    //var num = 120;
-    // var total_time = num;
-    //var timerId = null;
     for (i = 0; i < order_list.length; i++) {
         var order_id = "order_" + (i + 1);
         document.getElementById(order_id).style.display = 'flex';
@@ -173,7 +169,6 @@ function open_order_list(order_list) {
         total_price += (order_list[i].price)*(order_list[i].number);
     }
 
-    //document.getElementById("rest_time").innerHTML = "남은시간<br>" + (total_time) +"초"
     document.getElementById("item_number").innerHTML = "_________________________<br>선택한 상품 " + (total_num) + "개";
     document.getElementById("total_price").innerHTML = (total_price)+"원<br>결제하기";
     total_list[0] = total_num;
@@ -265,7 +260,7 @@ function close_w_카드결제() {
     document.getElementById("w_카드결제").style.display = 'none';
     document.getElementById("screen_to_window_pay").style.display = 'none';
     document.getElementById("insert_card_moving").style.display = 'none';
-
+    total_list[1]+=3000;
 }
 function open_w_쿠폰사용() {
     document.getElementById("w_쿠폰사용").style.display = 'block';
@@ -282,6 +277,9 @@ function close_w_쿠폰사용() {
     document.getElementById("screen_to_window_pay").style.display = 'none';
     document.getElementById("insert_card_moving").style.display = 'none';
     document.getElementById("insert_barcode_moving").style.display = 'none';
+    document.getElementById("coupon_name").innerText = "";
+    document.getElementById("coupon_rest").innerText = "";
+    document.getElementById("coupon_pay").innerText = "";
 }
 
 function open_w_페이코() {
@@ -305,39 +303,20 @@ function 결제완료() {
 function herf_home() {
     location.href = "mega.html";
 }
-
-/*var SetTime = 5;		// 최초 설정 시간(기본 : 초)
-function msg_time() {	// 1초씩 카운트
-	m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
-    var msg = "현재 남은 시간은 <font color='red'>" + m + "</font> 입니다.";
-	document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌 		
-			SetTime--;					// 1초씩 감소
-			if (SetTime < 0) {			// 시간이 종료 되었으면..
-				clearInterval(tid);		// 타이머 해제
-				alert("종료");
-			}	
-		}
-
-	window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) 
-}*/
-
-/*var num = 30; 타이머
-let timerId = null;
-var lefttime = document.getElementById('.remaining-time').innerHTML = num;
-
-window.onclick = () => {
-  if (timerId) {
-    clearInterval(timerId);
-    timerId = null;
-    num = 30;
-  }
-
-  timerId = setInterval(() => {
-    num -= 1;
-    leftTime.textContent = num;
-    if (num === 0) {
-      num = 30;
-      window.location.reload();
+function open_계산() {
+    var rev_sum = total_list[1]-3000;
+    document.getElementById("coupon_name").innerText = "아메리카노(HOT/ICE) 1잔 무료";
+    document.getElementById("coupon_rest").innerText = rev_sum + "원";
+    document.getElementById("coupon_pay").innerText = "3000원";
+    document.getElementById("insert_barcode_moving").style.display = 'none';
+    if (rev_sum != 0) {
+        total_list[1] = rev_sum;
+        alert("결제금액이 남아있습니다. 세부내역을 원하시면 결제창에서 취소 버튼을 누르세요.")
+        document.getElementById("insert_barcode_moving").style.display = 'none';
+        open_w_카드결제();
     }
-  }, 1000);
-};*/
+    else {
+        결제완료();
+    } 
+
+}

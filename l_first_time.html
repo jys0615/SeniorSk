@@ -292,7 +292,7 @@
                     </div>
                 </div>
                 <div id="insert_card_moving" onclick="결제완료()"></div>
-
+                <div id="insert_barcode_moving" onclick="결제완료()"></div>
                 <div id="screen_to_window_pay"></div>
 
                 <div id="window_pay">
@@ -360,7 +360,43 @@
 
                 </div>
 
-                <div id="포인트적립"> </div>
+                <div id="w_쿠폰사용"> 
+                    <div id="w_쿠폰사용_top">
+                        <div>모바일 상품권</div>
+                        <div onclick="close_w_쿠폰사용()">X</div>
+                    </div>
+                    <div id="w_list">
+                        <div id="w_list_b">
+                            <div>쿠폰번호</div>
+                            <div id="keynum"><input style="width:100px;height:20px;" type="number" pattern="[0-9]*" inputmode="numeric" onkeyup="if(window.event.keyCode==13){open_계산()}"/></div>                           
+                        </div>
+                        <div>
+                            <div>쿠폰명칭</div>
+                            <div id="coupon_name"></div>
+                        </div>
+                        <div id="w_list_1">
+                            <div>잔여금액</div>
+                            <div id="coupon_rest"></div>
+                        </div>
+                        <div>
+                            <div>받을금액</div>
+                            <div id="w_쿠폰사용_total_price">2000원</div>
+                        </div>
+                        <div id="w_list_1">
+                            <div>결제금액</div>
+                            <div id="coupon_pay"></div>
+                        </div>
+                    </div>
+                    <div id="w_block_a">
+                        <div style="color: red; font-size: 10px; text-align:right; font-weight: bold;">※스캔이 되지 않으실 경우 위의 <br>키패드로 바코드를 직접 입력해주세요.</div>
+                        <div id="barcode_scan"></div>
+                    </div>
+                    <br>
+                    <div id="w_bottom">
+                        <div id="취소" onclick="search_w_쿠폰사용()">조회</div>
+                        <div id="승인요청" onclick="쿠폰결제()">사용</div>
+                    </div>
+                </div>
 
                 <div id="w_카드결제">
                     <div id="w_카드결제_top">
@@ -371,7 +407,7 @@
                         <div>다음 그림과 같이 신용/체크카드를 넣어주세요</div>
                         <div id="insert_card_w"></div>
                     </div>
-                    <div id="w_list">
+                    <div id="w_list_p">
                         <div id="w_list_1">
                             <div>총 결제금액</div>
                             <div id="w_카드결제_total_price">2000원</div>
@@ -417,7 +453,7 @@
 
         <div id="step5">5. 다양한 결제 방법 중 선택이 가능합니다. <br>
             대부분의 키오스크에서 현금결제는 불가합니다. 만약 현금결제를 하고 싶다면 직원에게 문의해보세요.
-            <br><br>다양한 결제 방식이 있지만 가장 간단한 방식은 카드 결제 입니다. 카드결제를 누르고
+            <br><br>다양한 결제 방식이 있습니다. 가장 간단한 방식은 카드 결제 입니다. 카드결제를 누르고
             카드를 꽂으면 결제가 완료됩니다.
             <br>
         </div>
@@ -428,10 +464,10 @@
 
         </div>
 
-        <div id="step7">
-
+        <div id="step7">7. 쿠폰사용 → 쿠폰번호를 입력, 혹은 쿠폰 바코드를 스캔하여 결제<br>
+             쿠폰번호 이상으로 금액이 남으면 차감한 만큼 추가 결제.
         </div>
-
+        <div id="step8"></div>
     </div>
 
     <div id="터치" onclick="터치()">

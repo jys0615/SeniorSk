@@ -520,7 +520,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="insert_barcode_moving" onclick="결제완료()"></div>
+                <div id="insert_barcode_moving" onclick="open_계산()"></div>
                 <div id="insert_card_moving" onclick="결제완료()"></div>
 
                 <div id="screen_to_window_pay"></div>
@@ -575,8 +575,8 @@
                     </div>
                     <div id="window_bottom">
                         <div id="돌아가기" onclick="close_window_pay()">←<br>돌아가기</div>
-                        <div id="먹고가기" onclick="change_window_btn()">먹고가기<br>(다회용컵)</div>
-                        <div id="포장하기" onclick="change_window_btn()">포장하기<br>(일회용컵)</div>
+                        <div id="먹고가기" onclick="change_window_btn()"><br>먹고가기</div>                        
+                        <div id="포장하기" onclick="change_window_btn()"><br>포장하기</div>
 
                         <div id="돌아가기_2" onclick="back_2_window_btn()">←<br>돌아가기</div>
                         <div id="쿠폰사용" onclick="open_w_쿠폰사용()"><br>쿠폰사용</div>
@@ -593,13 +593,16 @@
                     </div>
                     <div id="w_list">
                         <div id="w_list_1">
-                            <div>쿠폰번호</div>                           
+                            <div>쿠폰번호</div>
+                            <div id="keynum"><input style="width:100px;height:20px;" type="number" pattern="[0-9]*" inputmode="numeric" onkeyup="if(window.event.keyCode==13){open_계산()}"/></div>                           
                         </div>
                         <div>
                             <div>쿠폰명칭</div>
+                            <div id="coupon_name"></div>
                         </div>
                         <div id="w_list_1">
                             <div>잔여금액</div>
+                            <div id="coupon_rest"></div>
                         </div>
                         <div>
                             <div>받을금액</div>
@@ -607,16 +610,17 @@
                         </div>
                         <div id="w_list_1">
                             <div>결제금액</div>
+                            <div id="coupon_pay"></div>
                         </div>
                     </div>
                     <div id="w_block_a">
-                        <div style="color: red; font-size: 10px; text-align:right">※스캔이 되지 않으실 경우 위의 <br>키패드로 바코드를 직접 입력해주세요.</div>
+                        <div style="color: red; font-size: 10px; text-align:right; font-weight: bold;">※스캔이 되지 않으실 경우 위의 <br>키패드로 바코드를 직접 입력해주세요.</div>
                         <div id="barcode_scan"></div>
                     </div>
                     <br>
                     <div id="w_bottom">
                         <div id="취소" onclick="search_w_쿠폰사용()">조회</div>
-                        <div id="승인요청" onclick="결제완료()">사용</div>
+                        <div id="승인요청" onclick="쿠폰결제()">사용</div>
                     </div>
                 </div>
 
@@ -625,13 +629,14 @@
                         <div>페이코</div>
                         <div onclick="close_w_페이코()">X</div>
                     </div>
-                    <div id="w_list">
+                    <div id="w_list_p">
                         <div id="w_list_1">
                             <div>결제금액</div>
                             <div id="w_페이코_total_price">sd</div>                           
                         </div>
-                        <div>
+                        <div style="background-color:#D0CECE">
                             <div>바코드 번호</div>
+                            <div id="keynum"><input style="width:100px;height:20px;" type="number" pattern="[0-9]*" inputmode="numeric" onkeyup="if(window.event.keyCode==13){결제완료()}"/></div>
                         </div>
                     </div>
                     <div id="w_block_a">
@@ -657,7 +662,7 @@
                         <div id="insert_card_w"></div>
                     </div>
                     <br>
-                    <div id="w_list">
+                    <div id="w_list_p">
                         <div id="w_list_1">
                             <div>총 결제금액</div>
                             <div id="w_카드결제_total_price">sd</div>
