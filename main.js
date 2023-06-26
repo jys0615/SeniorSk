@@ -143,8 +143,22 @@ function option(id, type, price) {
         /**/
     }
 }
-
-function delete_item(index, id) {
+function increase(i) {
+    var inc = order_list[i].number += 1;
+    document.getElementById("amount_" + (i + 1)).innerText = inc + "개";
+    open_order_list(order_list);
+}
+function decrease(i) {
+    var inc = order_list[i].number -= 1;
+    if (inc == 0) {
+        delete_item(i);
+    }
+    else {
+        document.getElementById("amount_" + (i + 1)).innerText = inc + "개";
+    }
+    open_order_list(order_list);
+}
+function delete_item(index) {
     document.getElementById(order_list[index].name).style.borderStyle = 'none';
     document.getElementById(order_list[index].name).style.borderColor = 'none';
     hide_order(order_list.length-1);
@@ -286,13 +300,19 @@ function open_w_페이코() {
     document.getElementById("w_페이코").style.display = 'block';
     document.getElementById("window_pay").style.display = 'none';
     document.getElementById("w_페이코_total_price").innerText = total_list[1]+"원";
-    document.getElementById("insert_barcode_moving").style.display = 'block';
+    document.getElementById("insert_payco_moving").style.display = 'block';
 }
 
 function close_w_페이코() {
     document.getElementById("w_페이코").style.display = 'none';
     document.getElementById("screen_to_window_pay").style.display = 'none';
-    document.getElementById("insert_barcode_moving").style.display = 'none';
+    document.getElementById("insert_payco_moving").style.display = 'none';
+}
+function 페이코_결제완료(num) {
+    if (num == 123456) {
+    alert("감사합니다. 카드와 영수증을 챙겨가세요.");
+    location.href = "mega.html";
+    }
 }
 
 function 결제완료() {
@@ -304,14 +324,13 @@ function herf_home() {
     location.href = "mega.html";
 }
 function open_계산() {
-    var rev_sum = total_list[1]-3000;
+    total_list[1] = total_list[1]-3000;
     document.getElementById("coupon_name").innerText = "아메리카노(HOT/ICE) 1잔 무료";
-    document.getElementById("coupon_rest").innerText = rev_sum + "원";
+    document.getElementById("coupon_rest").innerText = total_list[1] + "원";
     document.getElementById("coupon_pay").innerText = "3000원";
     document.getElementById("insert_barcode_moving").style.display = 'none';
-    if (rev_sum != 0) {
-        total_list[1] = rev_sum;
-        alert("결제금액이 남아있습니다. 세부내역을 원하시면 결제창에서 취소 버튼을 누르세요.")
+    if (total_list[1] != 0) {
+        alert("결제금액이 남아있습니다. 세부내역을 원하시면 결제창에서 취소 버튼을 누르세요. 확인 후 사용 버튼을 누르세요.")
         document.getElementById("insert_barcode_moving").style.display = 'none';
         open_w_카드결제();
     }
@@ -320,3 +339,30 @@ function open_계산() {
     } 
 
 }
+function 조회() {
+    
+}
+function printName()  {
+    const name = document.getElementById('name').value;
+    if (name == 1234567) {
+        if (total_list[1] != 0) {
+            open_계산();
+        }
+        else {
+            alert('쿠폰 사용이 가능합니다.');
+            결제완료();
+        }
+    }
+    else {
+        alert('번호 불일치');
+    }
+  }
+  function printName1()  {
+    const name = document.getElementById('name2').value;
+    if (name == 123457) {
+        결제완료();
+    }
+    else {
+        alert('번호 불일치');
+    }
+  }

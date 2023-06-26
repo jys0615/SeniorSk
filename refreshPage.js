@@ -1,5 +1,5 @@
 // 남은 시간 영역
-var time = 120;
+var time = 200;
 var x = setInterval(function() {
   document.getElementById("rest_time").innerHTML = "남은시간<br>" + time + "초";
   time--;
