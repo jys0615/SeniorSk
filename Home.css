@@ -1,20 +1,15 @@
 body {
     width: 100%;
     height: 100%;
-
-
-    /*background: beige;*/
+    margin: 0px;
 }
 
 .main {
     width: 100%;
     height: 85vh;
-
     top: 0;
     left: 0;
     right: 0;
-
-    /*background: rgb(207, 216, 194);*/
 }
 
 .wrapper {
@@ -26,8 +21,6 @@ body {
     
 }
 
-
-/*할지 말지 모르겠는 홈버튼*/
 .homebtn {
     height: 15vh;
 }
@@ -145,7 +138,7 @@ body {
 .kiosc_mega_screen { /*터치스크린 배경*/
     width: 340px;
     height: 70vh;
-    background-color: #F7F7F7;
+    background-color: white;
     border-radius: 15px;
     margin: 11px;
     position: absolute;
@@ -188,13 +181,13 @@ body {
 
 }
 #menu_bar_right {
-    width: 30px;
-    height: 24px;
+    width: 25px;
+    height: 22px;
     background: url(img/right_btn.png) no-repeat center / cover;
 }
 #menu_bar_left {
-    width: 30px;
-    height: 24px;
+    width: 25px;
+    height: 22px;
     background: url(img/left_btn.png) no-repeat center / cover;
 }
 #mega_top_bar_name {
@@ -273,14 +266,15 @@ body {
 /*주문창*/
 #pay {
     width: 100%;
-    height: 26%;
+    height: 23.5%;
     background: #ffd600;
+    border-radius: 0px 10px 0px 10px;
     display: none;
 }
 #order_lsit {
     width: 65%;
-    height: 100%;
-    border-radius: 0px 10px 0px 0px;
+    /*height: 129px;*/
+    border-radius: 0px 10px 0px 10px;
     background: white;
     font-size: 12px;
     flex-direction: column;
@@ -325,6 +319,7 @@ body {
 
 #order_list_right {
     width: 35%;
+    height: 129px;
     flex-direction: column;
     background: #ffd600;
 }
