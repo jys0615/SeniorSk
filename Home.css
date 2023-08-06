@@ -106,7 +106,7 @@ body {
 .foot {
     width: 100vw;
     height: 15vh;
-    background-color: #000036;
+    background-color: #022859;
     line-height: 3vh;
 
 }
@@ -496,7 +496,7 @@ body {
     width: 63px;
     height: 105px;
     object-fit: cover;
-    background: url(img/barcode_scan\ \(2\).png) no-repeat center / cover;
+    background: url(img/barcode_pay.png) no-repeat center / cover;
 }
 #insert_payco_moving {
     position:relative;
@@ -506,7 +506,7 @@ body {
     width: 63px;
     height: 105px;
     object-fit: cover;
-    background: url(img/barcode_scan\ \(2\).png) no-repeat center / cover;
+    background: url(img/barcode_pay.png) no-repeat center / cover;
 }
 /*결제 창 페이지*/
 #screen_to_window_pay {
