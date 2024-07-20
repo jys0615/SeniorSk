@@ -9,4 +9,5 @@ Deploy link: https://jys0615.github.io/SeniorSk/
 <참고사항>
 
 쿠폰 번호: 1234567
+<br>
 페이코 번호: 123457
