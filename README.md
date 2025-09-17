@@ -24,7 +24,7 @@
 
 ## 🛠 기술 스택
 - Frontend: HTML, CSS, JavaScript  
-- 추가 구현: 사용자 경험 개선을 위한 JS 이벤트 핸들러  
+- Github Pages 
 
 ---
 
