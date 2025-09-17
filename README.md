@@ -8,6 +8,9 @@
 
 Deploy link: https://jys0615.github.io/SeniorSk/
 
+<img width="359" height="817" alt="스크린샷 2025-09-17 오후 8 43 55" src="https://github.com/user-attachments/assets/4b026dc4-8db8-447f-8021-89a415bf0f34" />
+
+
 <참고사항>
 
 쿠폰 번호: 1234567
